@@ -42,6 +42,10 @@ p_null = 0.5
 # Calculate critical value for one-tailed test
 critical_value = binom.ppf(1 - alpha, n, p_null)
 
+# Calculate p-value
+p_value = 1 - binom.cdf(k - 1, n, p_null)
+st.markdown(f"**p-value:** {p_value:.4f}")
+
 if k > critical_value:
     st.markdown(f"❌ **Result:** We reject the null hypothesis at α = 0.05. The observed number of heads ({k}) is significantly higher than expected under fairness.")
 else:
@@ -66,4 +70,5 @@ This app simulates the **binomial distribution** of tossing a coin multiple time
 - **p** is the probability of getting heads.
 - **k** lets you highlight a specific number of heads in red.
 - Includes a one-tailed hypothesis test assuming a fair coin (p = 0.5).
+- Calculates and displays the **p-value** to quantify evidence against the null hypothesis.
 """)
